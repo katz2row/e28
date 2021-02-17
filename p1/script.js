@@ -1,5 +1,16 @@
 "use strict";
 
+// New Vue instance and mount for Week 3 homework requirement
+const rpc = {
+    data() {
+        return {
+            playerName: 'Player Name Here',
+        }
+    },
+}
+
+const app = Vue.createApp(rpc).mount('#app');
+
 // Charity Katz - E28 Week 2 Game - Spring 2021
 
 window.onload = function() {

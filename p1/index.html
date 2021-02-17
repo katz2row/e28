@@ -7,13 +7,21 @@
 	<link rel="stylesheet" href="style.css">
     <script src='https://unpkg.com/vue@next' defer></script>
 	<script type="text/javascript" src="script.js" defer></script>
+
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
+    <div id="app" v-cloak>
 	<h1>Rock, Paper, Scissors</h1>
 	<div id="container">
 		<div id="player_selection">
 			<h2>Player Selection</h2>
+            <p>Welcome, {{playerName}}! Get started by entering your name.</p>
 			<p>Select Rock, Paper, or Scissors, and try to beat the computer.</p>
 			<p>Remember:</p>
 			<ul>
@@ -42,6 +50,7 @@
 			<div style="clear: both;"></div>
 		</div>
 	</div>
+    </div>
 </body>
 
 </html>
