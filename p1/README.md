@@ -7,7 +7,7 @@
 - To see the proper syntax for adding multiple functions (not really what I needed but a starting place), I checked here: ,https://stackoverflow.com/questions/38744932/how-to-call-multiple-functions-with-click-in-vue.
 - Scissors image: <https://www.pexels.com/photo/silver-scissors-on-white-surface-3990146/>
 - Rock image: <https://www.pexels.com/photo/black-stone-2363901/>
-- Paper image (I think this is the one I used): 
+- Paper image (I think this is the one I used): <https://pixabay.com/photos/notepad-table-decoration-notes-3297994/>
 
 ## Notes for instructor
-n/a
+- The images were downloaded and edited for Week 2's project. They were downloaded from royalty free sites, and I did not take note of which sites I used for which pictures.
