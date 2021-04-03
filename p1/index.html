@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<!-- Charity Katz - E28 Week 2 Game - Spring 2021 -->
+<!-- Charity Katz - E28 Week 7 Game - Spring 2021 -->
 <html>
 
 <head>
-	<title>E-28 WK 2 - Rock Paper Scissors</title>
+	<title>E-28 WK 7 - Rock Paper Scissors</title>
 	<link rel="stylesheet" href="style.css">
-    <script src='https://unpkg.com/vue@next' defer></script>
+    <script src="https://unpkg.com/vue@next"></script>
 	<script type="text/javascript" src="script.js" defer></script>
 
     <style>
@@ -16,13 +16,30 @@
 </head>
 
 <body>
-    <div id="app" v-cloak>
+    
 	<h1>Rock, Paper, Scissors</h1>
+	
+	<div id="app" v-cloak>
+	
 	<div id="container">
+	
+	<div v-if="!gameOn">
+	<h2>Welcome!</h2>
+	<p>My name is... not relevant.</p>
+	<p>You can call me <strong>Computer</strong>.</p>
+	<p>I like playing Rock, Paper, Scissors, but I want to know who I am playing against for my smack talk.</p>
+	<p>That's right! I can mock the outcome of a game of chance with the best of them!</p><p>&nbsp;</p>
+	<p><label for="playerName"><strong>So, what's your name?</strong></label><br />
+	<input type="text" id="playerName" v-model="playerName" v-on:keyup.enter="gameStarted"></p>
+            <p><button v-on:click="gameStarted" class="play">Let’s play!</button></p>
+	</div>
+	
+	<div v-else>
+	
 		<div id="player_selection">
 			<h2>Player Selection</h2>
-            <p>Welcome, {{playerName}}! Get started by entering your name.</p>
-			<p>Select Rock, Paper, or Scissors, and try to beat the computer.</p>
+            <p>Time to get schooled, {{playerName}}!</p><p>&nbsp;</p>
+			<p>Select Rock, Paper, or Scissors, and try to beat me.</p>
 			<p>Remember:</p>
 			<ul>
 				<li>Rock smashes scissors</li>
@@ -30,9 +47,9 @@
 				<li>Paper wraps rock</li>
 			</ul>
 			<div id="player_buttons">
-				<button id="rock" class="button" type="button" value="Rock" name="rock" style="background-color: #f14e4e;">Rock</button>&nbsp;&nbsp;&nbsp;
-				<button id="paper" class="button" type="button" value="Paper" name="paper" style="background-color: #4ef18f;">Paper</button>&nbsp;&nbsp;&nbsp;
-				<button id="scissors" class="button" type="button" value="Scissors" name="scissors" style="background-color: #9a4ef1;">Scissors</button>
+				<button id="rock" class="button" type="button" value="rock" name="rock" style="background-color: #f14e4e;" v-on:click="gamePlay('rock');">Rock</button>&nbsp;&nbsp;&nbsp;
+				<button id="paper" class="button" type="button" value="paper" name="paper" style="background-color: #4ef18f;" v-on:click="gamePlay('paper');">Paper</button>&nbsp;&nbsp;&nbsp;
+				<button id="scissors" class="button" type="button" value="scissors" name="scissors" style="background-color: #9a4ef1;" v-on:click="gamePlay('scissors');">Scissors</button>
 			</div>
 		</div>
 		<hr />
@@ -41,16 +58,17 @@
 			<p class="winner_declaration">The winner is <span id="winner"></span>!</p>
 			<div id="player">
 				<h3>Player</h3>
-				<p><img src="images/placeholder.png" alt="Player Result" id="player_img" /></p>
+				<p><img v-bind:src="'images/' + playerGuess + '-400.png'" alt="Player Result" id="player_img" /></p>
 			</div>
 			<div id="computer">
 				<h3>Computer</h3>
-				<p><img src="images/placeholder.png" alt="Computer Result" id="computer_img" /></p>
+				<p><img v-bind:src="'images/' + computerGuess + '-400.png'" alt="Computer Result" id="computer_img" /></p>
 			</div>
 			<div style="clear: both;"></div>
 		</div>
 	</div>
     </div>
+	</div>
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-/* Charity Katz - E28 Week 2 Game - Spring 2021 */
+/* Charity Katz - E28 Week 7 Game - Spring 2021 */
 
 body {
 	background-color: #85c1e9;
@@ -54,6 +54,13 @@ button {
 
 button:hover {
 	border-color: #708090;
+}
+
+button.play {
+	background-color: #99FFCC;
+	font-size: 16pt;
+	color: #000000;
+	
 }
 
 .winner_declaration {
