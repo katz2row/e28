@@ -5,70 +5,93 @@
 <head>
 	<title>E-28 WK 7 - Rock Paper Scissors</title>
 	<link rel="stylesheet" href="style.css">
-    <script src="https://unpkg.com/vue@next"></script>
+	<script src="https://unpkg.com/vue@next" defer></script>
 	<script type="text/javascript" src="script.js" defer></script>
-
-    <style>
-        [v-cloak] {
-            display: none;
-        }
-    </style>
+	<style>
+	[v-cloak] {
+		display: none;
+	}
+	</style>
 </head>
 
 <body>
-    
 	<h1>Rock, Paper, Scissors</h1>
-	
 	<div id="app" v-cloak>
-	
-	<div id="container">
-	
-	<div v-if="!gameOn">
-	<h2>Welcome!</h2>
-	<p>My name is... not relevant.</p>
-	<p>You can call me <strong>Computer</strong>.</p>
-	<p>I like playing Rock, Paper, Scissors, but I want to know who I am playing against for my smack talk.</p>
-	<p>That's right! I can mock the outcome of a game of chance with the best of them!</p><p>&nbsp;</p>
-	<p><label for="playerName"><strong>So, what's your name?</strong></label><br />
-	<input type="text" id="playerName" v-model="playerName" v-on:keyup.enter="gameStarted"></p>
-            <p><button v-on:click="gameStarted" class="play">Let’s play!</button></p>
+		<div id="container">
+			<div v-if="!gameOn">
+				<h2>Welcome!</h2>
+				<p>My name is... not relevant.</p>
+				<p>You can call me <strong>Computer</strong>.</p>
+				<p>I like playing Rock, Paper, Scissors, but I want to know who I am playing against for my smack talk.</p>
+				<p>That's right! I can mock the outcome of a game of chance with the best of them!</p>
+				<p>&nbsp;</p>
+				<p>
+					<label for="playerName"><strong>So, what's your name?</strong></label>
+					<br />
+					<input type="text" id="playerName" v-model="playerName" v-on:keyup.enter="gameStarted"> </p>
+				<p>
+					<button v-on:click="gameStarted" class="play">Let's play!</button>
+				</p>
+			</div>
+			<div v-else>
+				<div id="game_play">
+					<div class="left_float" id="player_selection">
+						<h2>Player Selection</h2>
+						<p>Time to get schooled, <span class="name">{{playerName}}</span>!
+							<br /> </p>
+						<p>Select Rock, Paper, or Scissors, and try to beat me.</p>
+						<p>Remember:</p>
+						<ul>
+							<li>Rock smashes scissors</li>
+							<li>Scissors cut paper</li>
+							<li>Paper wraps rock</li>
+						</ul>
+						<div id="player_buttons">
+							<button id="rock" class="game" type="button" value="rock" name="rock" style="background-color: #f14e4e;" v-on:click="gamePlay('rock');">Rock</button>&nbsp;&nbsp;&nbsp;
+							<button id="paper" class="game" type="button" value="paper" name="paper" style="background-color: #ff9966;" v-on:click="gamePlay('paper');">Paper</button>&nbsp;&nbsp;&nbsp;
+							<button id="scissors" class="game" type="button" value="scissors" name="scissors" style="background-color: #9a4ef1;" v-on:click="gamePlay('scissors');">Scissors</button>
+						</div>
+					</div>
+					<div id="game_results" class="right_float" v-if="rounds.length > 0">
+						<div class="left_float">
+							<h2>Game Results</h2> </div>
+						<div class="right_float">
+							<button class="resetbutton" type="button" value="play_again" name="play_again" v-on:click="playAgain();">Play Again</button>&nbsp;&nbsp;&nbsp;
+							<button class="resetbutton" type="button" value="reset_game" name="reset_game" v-on:click="resetGame();">Reset Game</button>
+						</div>
+						<div style="clear: both;"></div>
+						<p class="winner_declaration" v-bind:class="shortOutcome">{{gameOutcome}}</p>
+						<div id="player">
+							<h3>Player</h3>
+							<p>Score: <strong>{{playerScore}}</strong></p>
+							<p><img v-bind:src="'images/' + playerGuess + '-400.png'" alt="Player Result" id="player_img" /></p>
+						</div>
+						<div id="computer">
+							<h3>Computer</h3>
+							<p>Score: <strong>{{computerScore}}</strong></p>
+							<p><img v-bind:src="'images/' + computerGuess + '-400.png'" alt="Computer Result" id="computer_img" /></p>
+						</div>
+						<div style="clear: both;"></div>
+					</div>
+					<div style="clear: both;"></div>
+				</div>
+			<hr />
+			<div id="game_history" v-if="rounds.length > 0">
+				<h3>Game History</h3>
+				<round-detail v-for="round in rounds" v-bind:key="round.number" v-bind:number="round.number" v-bind:player="round.player" v-bind:outcome="round.outcome" v-bind:playerresult="round.playerresult" v-bind:computerresult="round.computerresult" v-bind:shortoutcome="round.shortoutcome"> </round-detail>
+			</div>
+			</div>
+		</div>
 	</div>
 	
-	<div v-else>
-	
-		<div id="player_selection">
-			<h2>Player Selection</h2>
-            <p>Time to get schooled, {{playerName}}!</p><p>&nbsp;</p>
-			<p>Select Rock, Paper, or Scissors, and try to beat me.</p>
-			<p>Remember:</p>
+	<script id="round-detail" type="text/x-template">
+		<div>
 			<ul>
-				<li>Rock smashes scissors</li>
-				<li>Scissors cut paper</li>
-				<li>Paper wraps rock</li>
+				<li class="history">Round #: {{number}} - <strong>{{player}}</strong> threw <em>{{playerresult}}</em> and <span class="result"><strong>{{outcome}}<span v-show="shortoutcome == 'failed'"> to</span></strong>
+					</span> <strong>Computer's</strong> <em>{{computerresult}}</em>.</li>
 			</ul>
-			<div id="player_buttons">
-				<button id="rock" class="button" type="button" value="rock" name="rock" style="background-color: #f14e4e;" v-on:click="gamePlay('rock');">Rock</button>&nbsp;&nbsp;&nbsp;
-				<button id="paper" class="button" type="button" value="paper" name="paper" style="background-color: #4ef18f;" v-on:click="gamePlay('paper');">Paper</button>&nbsp;&nbsp;&nbsp;
-				<button id="scissors" class="button" type="button" value="scissors" name="scissors" style="background-color: #9a4ef1;" v-on:click="gamePlay('scissors');">Scissors</button>
-			</div>
 		</div>
-		<hr />
-		<div id="game_results">
-			<h2>Game Results</h2>
-			<p class="winner_declaration">The winner is <span id="winner"></span>!</p>
-			<div id="player">
-				<h3>Player</h3>
-				<p><img v-bind:src="'images/' + playerGuess + '-400.png'" alt="Player Result" id="player_img" /></p>
-			</div>
-			<div id="computer">
-				<h3>Computer</h3>
-				<p><img v-bind:src="'images/' + computerGuess + '-400.png'" alt="Computer Result" id="computer_img" /></p>
-			</div>
-			<div style="clear: both;"></div>
-		</div>
-	</div>
-    </div>
-	</div>
+	</script>
 </body>
 
 </html>

@@ -9,7 +9,7 @@ body {
 
 #container {
 	background-color: #FFFFFF;
-	width: 900px;
+	width: 1280px;
 	margin: auto;
 	padding: 15px;
 }
@@ -36,7 +36,17 @@ h1 {
 	text-align: center;
 }
 
-button {
+.name {
+	color: #0000ff;
+	font-size: 20pt;
+	font-weight: 700;	
+}
+
+button:hover {
+	border-color: #708090;
+}
+
+button.game {
 	display: inline-block;
 	padding: 0.3em 1.2em;
 	margin: 0 0.1em 0.1em 0;
@@ -49,11 +59,7 @@ button {
 	text-shadow: 0 0.04em 0.04em rgba(0, 0, 0, 0.35);
 	text-align: center;
 	transition: all 0.2s;
-	font-size: 24pt;
-}
-
-button:hover {
-	border-color: #708090;
+	font-size: 16pt;
 }
 
 button.play {
@@ -63,12 +69,49 @@ button.play {
 	
 }
 
+button.resetbutton {
+	margin: 25px 0 0 0;
+}
+
+.left_float {
+		float: left;
+	width: 50%;
+	margin: 0;
+	text-align: left;
+}
+
+.right_float {
+	float: right;
+	width: 50%;
+	margin: 0;
+	text-align: right;
+}
+
 .winner_declaration {
 	text-align: center;
 	font-size: 18pt;
 	font-weight: 700;
 }
 
-#winner {
+.clobbered {
+	color: #00cc66;
+}
+
+.failed {
+	color: #ff5050;
+}
+
+.tied {
+	color: #ff9900;
+}
+
+.result {
 	color: #66a594;
+}
+
+img {height: 200px;}
+
+.history {
+	font-size: 12pt;
+	text-align: left; 
 }

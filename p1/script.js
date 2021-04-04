@@ -1,103 +1,109 @@
 /* Charity Katz - E28 Week 7 Game - Spring 2021 */
-
-let RockPaperScissors = {
+const RockPaperScissors = {
     data() {
         return {
             playerName: "",
-			gameOn: false,
-			computerGuess: "placeholder",
-			playerGuess: "placeholder",
-			gameOutcome: null,
-			games: [],
-			win: false,
-			lose: false,
-			draw: false,
-			playerScore: 0,
-			computerScore: 0,
+            gameOn: false,
+            computerGuess: "placeholder",
+            playerGuess: "placeholder",
+            gameOutcome: null,
+            shortOutcome: null,
+			roundNumber: 0,
+            rounds: [],
+            playerScore: 0,
+            computerScore: 0,
         }
     },
-	
-	methods: {
+
+    methods: {
         gameStarted() {
             this.gameOn = true;
         },
-      
-	  gamePlay(playerValue) {
-		  let playerGuess = playerValue
-			  let getComputerGuess = Math.floor(Math.random() * (3 - 1 + 1) + 1)
-		  
-		  if(getComputerGuess === 1) {
-			  computerGuess = "rock";
-		  } else if (getComputerGuess === 2) {
-			  computerGuess = "paper";
-		  } else {computerGuess = "scissors";}
-		  
-		 if ((playerGuess === "paper" && computerGuess === "rock") || (playerGuess === "scissors" && computerGuess === "paper") || (playerGuess === "rock" && computerGuess === "scissors")) {
-            gameOutcome = "You win. I guess.";
-        } else if ((playerGuess === "scissors" && computerGuess === "rock") || (playerGuess === "rock" && computerGuess === "paper") || (playerGuess === "paper" && computerGuess === "scissors")) {
-            gameOutcome = "I win, sucker!";
-        } else {
-            gameOutcome = "Uggg! A tie!";
-        }
-		
-		this.computerGuess.push
-		this.playerGuess.push
+
+        gamePlay(playerValue) {
+            this.playerGuess = playerValue
+            getComputerGuess = Math.floor(Math.random() * (3 - 1 + 1) + 1)
+
+            if (getComputerGuess === 1) {
+                this.computerGuess = "rock";
+            } else if (getComputerGuess === 2) {
+                this.computerGuess = "paper";
+            } else {
+                this.computerGuess = "scissors";
+            }
+
+            if ((this.playerGuess === "paper" && this.computerGuess === "rock") || (this.playerGuess === "scissors" && this.computerGuess === "paper") || (this.playerGuess === "rock" && this.computerGuess === "scissors")) {
+                this.gameOutcome = "You win. I guess.";
+                this.shortOutcome = "clobbered";
+                this.playerScore += 1;
+            } else if ((this.playerGuess === "scissors" && this.computerGuess === "rock") || (this.playerGuess === "rock" && this.computerGuess === "paper") || (this.playerGuess === "paper" && this.computerGuess === "scissors")) {
+                this.gameOutcome = "I win, sucker!";
+                this.shortOutcome = "failed";
+                this.computerScore += 1;
+            } else {
+                this.gameOutcome = "Uggg! A tie!";
+                this.shortOutcome = "tied";
+            }
 			
-			console.log("Computer Guess " + computerGuess);
-			console.log("Player Guess " + playerGuess);
-			console.log(gameOutcome);
-	  },
-	  
-	 
-	  
+			this.roundNumber += 1;
+			
+		this.rounds.push ({
+				player: this.playerName,
+				outcome: this.shortOutcome,
+				playerresult: this.playerGuess,
+				computerresult: this.computerGuess,
+				number: this.roundNumber,
+				shortoutcome: this.shortOutcome,
+			}); 
+        },
+
+        playAgain() {
+            this.gameOutcome = null;
+            this.playerGuess = "placeholder";
+            this.computerGuess = "placeholder";
+        },
+		
+		resetGame() {
+			this.gameOn = false;
+            this.gameOutcome = null;
+            this.playerGuess = "placeholder";
+            this.computerGuess = "placeholder";
+			this.playerScore = 0;
+			this.computerScore = 0;
+			this.rounds = [];
+			this.roundNumber = 0;
+        },
+
     }
 }
 
-const app = Vue.createApp(RockPaperScissors).mount("#app");
-
-
-/*
-      // Generate a random number between 1-3 to determine computer's selection and then set image source based on random number
-    getButtons.addEventListener("click", function() {
-        let genNum = Math.floor(Math.random() * (3 - 1 + 1) + 1);
-
-        if (genNum === 1) {
-            computerResult.setAttribute("src", "images/rock-400.png");
-        } else if (genNum === 2) {
-            computerResult.setAttribute("src", "images/paper-400.png");
-        } else {
-            computerResult.setAttribute("src", "images/scissors-400.png");
-        }
-    }, false);
-
-    // Set player image source depending on if player clicks rock, paper, or scissors
-    rock.onclick = function() {
-        playerResult.setAttribute("src", "images/rock-400.png");
-    }
-
-    paper.onclick = function() {
-        playerResult.setAttribute("src", "images/paper-400.png");
-    }
-
-    scissors.onclick = function() {
-        playerResult.setAttribute("src", "images/scissors-400.png");
-    }
-
-    // Compare image sources for player and computer and define the winner depending on the outcomes
-    getButtons.addEventListener("click", function() {
-        let playerSrc = document.getElementById("player_img").getAttribute("src");
-        let computerSrc = document.getElementById("computer_img").getAttribute("src");
-
-        if ((playerSrc === "images/paper-400.png" && computerSrc === "images/rock-400.png") || (playerSrc === "images/scissors-400.png" && computerSrc === "images/paper-400.png") || (playerSrc === "images/rock-400.png" && computerSrc === "images/scissors-400.png")) {
-            document.getElementById("winner").innerHTML = "PLAYER";
-        } else if ((playerSrc === "images/scissors-400.png" && computerSrc === "images/rock-400.png") || (playerSrc === "images/rock-400.png" && computerSrc === "images/paper-400.png") || (playerSrc === "images/paper-400.png" && computerSrc === "images/scissors-400.png")) {
-            document.getElementById("winner").innerHTML = "COMPUTER";
-        } else {
-            document.getElementById("winner").innerHTML = "A TIE";
-        }
-
-    }, false);
-
+const RoundDetail = {
+    name: "RoundDetail",
+    props: {
+		number: {
+            type: Number,
+			default: 0
+        },
+        player: {
+            type: String
+        },
+        outcome: {
+            type: String
+        },
+        playerresult: {
+            type: String
+        },
+		 computerresult: {
+            type: String
+        },
+		shortoutcome: {
+			type: String
+		},
+    },
+    data() {
+        return {}
+    },
+    template: "#round-detail"
 }
 
-*/
+const app = Vue.createApp(RockPaperScissors).component("round-detail" , RoundDetail).mount("#app");
