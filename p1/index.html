@@ -75,15 +75,14 @@
 					</div>
 					<div style="clear: both;"></div>
 				</div>
-			<hr />
-			<div id="game_history" v-if="rounds.length > 0">
-				<h3>Game History</h3>
-				<round-detail v-for="round in rounds" v-bind:key="round.number" v-bind:number="round.number" v-bind:player="round.player" v-bind:outcome="round.outcome" v-bind:playerresult="round.playerresult" v-bind:computerresult="round.computerresult" v-bind:shortoutcome="round.shortoutcome"> </round-detail>
-			</div>
+				<hr />
+				<div id="game_history" v-if="rounds.length > 0">
+					<h3>Game History</h3>
+					<round-detail v-for="round in rounds" v-bind:key="round.number" v-bind:number="round.number" v-bind:player="round.player" v-bind:outcome="round.outcome" v-bind:playerresult="round.playerresult" v-bind:computerresult="round.computerresult" v-bind:shortoutcome="round.shortoutcome"> </round-detail>
+				</div>
 			</div>
 		</div>
 	</div>
-	
 	<script id="round-detail" type="text/x-template">
 		<div>
 			<ul>

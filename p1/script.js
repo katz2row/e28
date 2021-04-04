@@ -8,7 +8,7 @@ const RockPaperScissors = {
             playerGuess: "placeholder",
             gameOutcome: null,
             shortOutcome: null,
-			roundNumber: 0,
+            roundNumber: 0,
             rounds: [],
             playerScore: 0,
             computerScore: 0,
@@ -44,17 +44,17 @@ const RockPaperScissors = {
                 this.gameOutcome = "Uggg! A tie!";
                 this.shortOutcome = "tied";
             }
-			
-			this.roundNumber += 1;
-			
-		this.rounds.push ({
-				player: this.playerName,
-				outcome: this.shortOutcome,
-				playerresult: this.playerGuess,
-				computerresult: this.computerGuess,
-				number: this.roundNumber,
-				shortoutcome: this.shortOutcome,
-			}); 
+
+            this.roundNumber += 1;
+
+            this.rounds.push({
+                player: this.playerName,
+                outcome: this.shortOutcome,
+                playerresult: this.playerGuess,
+                computerresult: this.computerGuess,
+                number: this.roundNumber,
+                shortoutcome: this.shortOutcome,
+            });
         },
 
         playAgain() {
@@ -62,16 +62,16 @@ const RockPaperScissors = {
             this.playerGuess = "placeholder";
             this.computerGuess = "placeholder";
         },
-		
-		resetGame() {
-			this.gameOn = false;
+
+        resetGame() {
+            this.gameOn = false;
             this.gameOutcome = null;
             this.playerGuess = "placeholder";
             this.computerGuess = "placeholder";
-			this.playerScore = 0;
-			this.computerScore = 0;
-			this.rounds = [];
-			this.roundNumber = 0;
+            this.playerScore = 0;
+            this.computerScore = 0;
+            this.rounds = [];
+            this.roundNumber = 0;
         },
 
     }
@@ -80,9 +80,9 @@ const RockPaperScissors = {
 const RoundDetail = {
     name: "RoundDetail",
     props: {
-		number: {
+        number: {
             type: Number,
-			default: 0
+            default: 0
         },
         player: {
             type: String
@@ -93,12 +93,12 @@ const RoundDetail = {
         playerresult: {
             type: String
         },
-		 computerresult: {
+        computerresult: {
             type: String
         },
-		shortoutcome: {
-			type: String
-		},
+        shortoutcome: {
+            type: String
+        },
     },
     data() {
         return {}
@@ -106,4 +106,4 @@ const RoundDetail = {
     template: "#round-detail"
 }
 
-const app = Vue.createApp(RockPaperScissors).component("round-detail" , RoundDetail).mount("#app");
+const app = Vue.createApp(RockPaperScissors).component("round-detail", RoundDetail).mount("#app");
