@@ -2,7 +2,7 @@
 
 # Project 2
 + By: *your first and last name*
-+ Production URL: <http://e28p2.yourdomain.com>
++ Production URL: <http://e28p2.katz2row.me>
 
 ## Pages summary
 *List the "pages" of your application*
