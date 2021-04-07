@@ -1,20 +1,24 @@
-*Any instructions/notes in italics should be removed from the template before submitting*
+# p2
 
-# Project 2
-+ By: *your first and last name*
-+ Production URL: <http://e28p2.katz2row.me>
+## Project setup
+```
+npm install
+```
 
-## Pages summary
-*List the "pages" of your application*
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
 
-## SFC summary
-*List the SFCs of your application*
-  
-## Server interaction
-*List the features in your application that are persisting and retrieving data from the server*
+### Compiles and minifies for production
+```
+npm run build
+```
 
-## Outside resources
-*Your list of outside resources go here*
+### Lints and fixes files
+```
+npm run lint
+```
 
-## Notes for instructor
-*Any notes for me to refer to while grading; if none, omit this section*
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
