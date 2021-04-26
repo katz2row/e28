@@ -16,9 +16,6 @@ export default {
         category: {
             type: String,
         },
-        products: {
-            type: Array,
-        },
     },
     data() {
         return {};
@@ -26,8 +23,13 @@ export default {
     computed: {
         featuredProducts() {
             return this.products.filter((product) => {
-                return product.categories.includes(this.category);
+                if (product.categories) {
+                    return product.categories.includes(this.category);
+                }
             }, this.category);
+        },
+        products() {
+            return this.$store.state.products;
         },
     },
 };
