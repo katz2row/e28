@@ -9,8 +9,7 @@
 </template>
 
 <script>
-export default {
-    
+export default { 
     props: {
         article: {
             type: Object,

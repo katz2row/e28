@@ -18,10 +18,4 @@ const router = createRouter({
     ]
 });
 
-
-    let tinymceScript = document.createElement('script')
-tinymceScript.setAttribute('src', 'https://cdn.tiny.cloud/1/405u4ei43xep8lur4w8xbyeree64bypy3zohnk1lrgtcrvk8/tinymce/5/tinymce.min.js')
-document.head.appendChild(tinymceScript)
-tinymceScript.setAttribute('referrerpolicy', 'origin')
-
 createApp(App).use(router).mount('#app');

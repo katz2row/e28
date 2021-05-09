@@ -2,7 +2,9 @@
 <router-view v-for="article in articles" v-bind:key="article.id">
     <hr />
     <display-abstract v-bind:article="article"></display-abstract>
-     <p class="readmore"><router-link v-bind:to="'/article/' + article.id" v-bind:key="article.id">Read More</router-link></p>
+    <p class="readmore">
+        <router-link v-bind:to="'/article/' + article.id" v-bind:key="article.id">Read More</router-link>
+    </p>
 </router-view>
 </template>
 
@@ -10,7 +12,6 @@
 import BlogAbstracts from '@/components/BlogAbstracts.vue';
 
 export default {
-    emits: ["updateArticles"],
     components: {
         "display-abstract": BlogAbstracts
     },
@@ -20,6 +21,7 @@ export default {
             default: null,
         },
     },
+    emits: ["updateArticles"],
     data() {
         return {};
     },

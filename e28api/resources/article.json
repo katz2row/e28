@@ -31,7 +31,6 @@
         "url": {
             "type": "text",
             "validators": [
-                "required",
                 "min:3",
                 "max:250"
             ]

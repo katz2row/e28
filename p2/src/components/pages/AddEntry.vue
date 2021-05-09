@@ -6,9 +6,9 @@
         <input type="text" v-model.lazy="article.title" id="title" /></p>
     <p v-if="errors && errors.title" class="error">Title must be between 3 and 250 characters.</p>
 
-    <p><label for="url">Filename (Enter a short filename without an extension and no spaces. E.g., blogtitle):</label><br />
+    <!--   <p><label for="url">Filename (Enter a short filename without an extension and no spaces. E.g., blogtitle):</label><br />
         <input type="text" v-model.lazy="article.url" id="url" /></p>
-    <p v-if="errors && errors.url" class="error">Filename must be between 3 and 250 characters, lowercase, without spaces.</p>
+    <p v-if="errors && errors.url" class="error">Filename must be between 3 and 250 characters, lowercase, without spaces.</p> -->
 
     <p><label for="date">Publish Date (Formatted: MM-DD-YYYY):</label><br />
         <input type="text" v-model.lazy="article.date" id="date" /></p>
@@ -23,9 +23,10 @@
     <p v-if="errors && errors.abstract" class="error">Abstract must be at least 100 characters in length.</p>
 
     <p><label for="article">Article Content (Use inline body HTML):</label><br />
-        <textarea name="article" id="article">PlaceholderText</textarea></p>
+        <textarea v-model.lazy="article.article" id="article"></textarea></p>
+    <p v-if="errors && errors.article" class="error">Article must be at least 100 characters in length, and use only plain and inline HTML elements.</p>
 
-    <button v-on:click="addEntry(); writeToFile(this);">Add Entry</button>
+    <button v-on:click="addEntry">Add Entry</button>
 
     <div class="error" v-if="showConfirmation">Your entry was added.</div>
 </div>
@@ -41,7 +42,13 @@ export default {
         return {
             showConfirmation: false,
             errors: null,
-            article: {},
+            article: {
+                title: "Prepopulated Title",
+                date: "05-11-2021",
+                categories: "School, Vue",
+                abstract: "This is a sample abstract. You should replace this with the actual article abstract. This abstract should be a short, non-formatted paragraph, or even just one or two sentences, but it does need to be at least 100 characters.",
+                article: "<p>This is a sample article. You should replace this with the actual article.</p><p>This article can have limited and inline HTML. It will be written in a div and should not have any style sheets or JavaScript.</p><p>It needs to be at least 100 characters.</p>"
+            }
         };
     },
     methods: {

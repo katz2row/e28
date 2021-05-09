@@ -1,12 +1,12 @@
 <template>
-    <div class="content">
-        <h1>Categories</h1>
-        <ul class="clean-list">
-            <li v-for="(category, id) in categories" v-bind:key="id">
-                {{ category }}
-            </li>
-        </ul>
-    </div>
+<div class="content">
+    <h1>Categories</h1>
+    <ul class="clean-list">
+        <li v-for="(category, id) in categories" v-bind:key="id">
+            {{ category }}
+        </li>
+    </ul>
+</div>
 </template>
 
 <script>

@@ -2,10 +2,10 @@
 <div id="article-content">
     <article-html v-bind:article="article"></article-html>
 
-    <div class="previous">
+    <div class="previous" v-show="this.article.id > 1">
         <router-link v-bind:to="'/article/' + (article.id - 1)">Previous Article</router-link>
     </div>
-    <div class="next">
+    <div class="next" v-show="this.article.id < this.articles.length">
         <router-link v-bind:to="'/article/' + (article.id + 1)">Next Article</router-link>
         </div>
     <div style="clear: both;">&nbsp;</div>
@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import { axios } from '@/common/app.js';
 import ArticleHTML from "@/components/ArticleHTML.vue";
 
 export default {
@@ -21,24 +22,24 @@ export default {
     },
     props: {
         article: {
-            type: Object,
+            type: Object
         },
-        articles: {
-            type: Array,
-        }
     },
     data() {
-        return {};
+        return {
+            articles: [],
+        };
     },
-    computed: {
-        displayPrev() {
-            return this.articles[this.article.id - 1];
+    mounted() {
+        this.countArticles();
+    },
+    methods: {
+        countArticles() {
+            axios.get("article").then((response) => {
+                this.articles = response.data.article;
+            });
         },
-        displayNext() {
-            return this.articles[this.article.id + 1];
-        }
-    }
-
+    },
 };
 </script>
 

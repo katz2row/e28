@@ -5,13 +5,16 @@
 ## Pages summary
 - Homepage - includes abstracts for blog entries with Read More link
 - About - static about me content
+- Categories - list of categories used with blog entries
 - Add An Entry - add a new blog entry
 
 ## SFC summary
-*List the SFCs of your application*
+- Homepage includes BlogAbstracts, which formats the each abstract, which is then accessed using the Read More link
+- Article includes DisplayArticle, which includes ArticleHTML - ArticleHTML contains the formatted article, and then in DisplayArticle are the Previous and Next configurations
   
 ## Server interaction
-*List the features in your application that are persisting and retrieving data from the server*
+- Get the list of articles
+- Post a new article
 
 ## Outside resources
 - Used Templated Captive Green as design template started but heavily edited: <https://all-free-download.com/free-website-templates/download/captivegreen_2534.html>
@@ -20,7 +23,7 @@
 - W3Schools for some basic form styling: <https://www.w3schools.com/css/css_form.asp>
 
 ## Notes for instructor
-*Any notes for me to refer to while grading; if none, omit this section*
+See my email.
 
 
 
