@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {
     "permission_level": 0,
     "fields": {
@@ -36,47 +35,12 @@
                 "min:3",
                 "max:250"
             ]
-        }
-    }
-=======
-{
-    "permission_level": 0,
-    "fields": {
-        "title": {
-            "type": "text",
-            "validators": [
-                "required",
-                "min:3",
-                "max:250"
-            ]
         },
-        "abstract": {
+        "article": {
             "type": "text",
             "validators": [
-                "required",
                 "min:100"
             ]
-        },
-        "date": {
-            "type": "timestamp",
-            "validators": [
-                "required"
-            ]
-        },
-        "categories": {
-            "type": "string",
-            "validators": [
-                "required"
-            ]
-        },
-        "url": {
-            "type": "text",
-            "validators": [
-                "required",
-                "min:3",
-                "max:250"
-            ]
         }
     }
->>>>>>> 9dd05c869c654381423b3fea5127c536d8444dbe
 }
