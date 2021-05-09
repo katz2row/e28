@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "permission_level": 0,
     "fields": {
@@ -58,4 +59,66 @@
             "validators": []
         }
     }
+=======
+{
+    "permission_level": 0,
+    "fields": {
+        "name": {
+            "type": "string",
+            "validators": [
+                "required",
+                "min:3",
+                "max:100"
+            ]
+        },
+        "sku": {
+            "type": "string",
+            "validators": [
+                "required",
+                "min:3",
+                "max:100",
+                "unique",
+                "alpha_dash"
+            ]
+        },
+        "description": {
+            "type": "text",
+            "validators": [
+                "required",
+                "min:100"
+            ]
+        },
+        "price": {
+            "type": "integer",
+            "validators": [
+                "required",
+                "numeric"
+            ]
+        },
+        "available": {
+            "type": "integer",
+            "validators": [
+                "required",
+                "numeric"
+            ]
+        },
+        "weight": {
+            "type": "integer",
+            "validators": [
+                "required",
+                "numeric"
+            ]
+        },
+        "perishable": {
+            "type": "boolean",
+            "validators": [
+                "required"
+            ]
+        },
+        "categories": {
+            "type": "string",
+            "validators": []
+        }
+    }
+>>>>>>> 9dd05c869c654381423b3fea5127c536d8444dbe
 }

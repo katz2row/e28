@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "permission_level": 0,
     "fields": {
@@ -16,4 +17,24 @@
             ]
         }
     }
+=======
+{
+    "permission_level": 0,
+    "fields": {
+        "product_id": {
+            "type": "integer",
+            "validators": [
+                "required",
+                "numeric"
+            ]
+        },
+        "user_id": {
+            "type": "integer",
+            "validators": [
+                "required",
+                "numeric"
+            ]
+        }
+    }
+>>>>>>> 9dd05c869c654381423b3fea5127c536d8444dbe
 }

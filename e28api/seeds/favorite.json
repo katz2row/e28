@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "seeds": [
         {
@@ -9,4 +10,17 @@
             "product_id": 2
         }
     ]
+=======
+{
+    "seeds": [
+        {
+            "user_id": 1,
+            "product_id": 1
+        },
+        {
+            "user_id": 1,
+            "product_id": 2
+        }
+    ]
+>>>>>>> 9dd05c869c654381423b3fea5127c536d8444dbe
 }

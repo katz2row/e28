@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "seeds": [
         {
@@ -11,4 +12,19 @@
             "password": "asdfasdf"
         }
     ]
+=======
+{
+    "seeds": [
+        {
+            "name": "Jill Harvard",
+            "email": "jill@harvard.edu",
+            "password": "asdfasdf"
+        },
+        {
+            "name": "Jamal Harvard",
+            "email": "jamal@harvard.edu",
+            "password": "asdfasdf"
+        }
+    ]
+>>>>>>> 9dd05c869c654381423b3fea5127c536d8444dbe
 }
