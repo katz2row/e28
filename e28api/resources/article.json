@@ -1,0 +1,40 @@
+{
+    "permission_level": 0,
+    "fields": {
+        "title": {
+            "type": "text",
+            "validators": [
+                "required",
+                "min:3",
+                "max:250"
+            ]
+        },
+        "abstract": {
+            "type": "text",
+            "validators": [
+                "required",
+                "min:100"
+            ]
+        },
+        "date": {
+            "type": "timestamp",
+            "validators": [
+                "required"
+            ]
+        },
+        "categories": {
+            "type": "string",
+            "validators": [
+                "required"
+            ]
+        },
+        "url": {
+            "type": "text",
+            "validators": [
+                "required",
+                "min:3",
+                "max:250"
+            ]
+        }
+    }
+}
