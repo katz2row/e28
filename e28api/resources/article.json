@@ -1,8 +1,8 @@
 {
-    "permission_level": 0,
+    "permission_level": 1,
     "fields": {
         "title": {
-            "type": "text",
+            "type": "string",
             "validators": [
                 "required",
                 "min:3",
@@ -19,7 +19,10 @@
         "date": {
             "type": "timestamp",
             "validators": [
-                "required"
+                "required",
+                "min:10",
+                "max:10",
+                "alpha_dash"
             ]
         },
         "categories": {
@@ -29,10 +32,11 @@
             ]
         },
         "url": {
-            "type": "text",
+            "type": "string",
             "validators": [
                 "min:3",
-                "max:250"
+                "max:250",
+                "alpha_dash"
             ]
         },
         "article": {
