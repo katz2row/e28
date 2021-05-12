@@ -21,4 +21,4 @@
 - User (this appears to be required for the authentication to work properly, but is being managed via Vuex)
 
 ## E2E Testing screenshot
-![ADD Blog passing E2E tests](https://raw.githubusercontent.com/susanBuck/e28/main/zipfoods/e2e-tests.png)
+![ADD Blog passing E2E tests](https://github.com/katz2row/e28/blob/main/p3/src/assets/images/passedtests.png?raw=true)
