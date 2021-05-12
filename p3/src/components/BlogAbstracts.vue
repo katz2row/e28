@@ -1,9 +1,9 @@
 <template>
-<div class="abstract">
-    <h1>{{article.title}}</h1>
+<div class="abstract" data-test="abstract-list">
+    <h1 data-test="abstract-title">{{article.title}}</h1>
     <p class="date"><strong><em>{{article.date}}</em></strong></p>
     <p class="categories"><em>Categories:</em> {{article.categories}}</p>
-    <p style="clear: both;">&nbsp;</p>
+    <div style="clear: both;">&nbsp;</div>
     <p>{{article.abstract}}</p>
 </div>
 </template>

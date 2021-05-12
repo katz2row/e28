@@ -1,7 +1,8 @@
 <template>
 <div id="account-page">
     <div v-if="user">
-        <h2 data-test="welcome-message" class="extraspacing">Hi, {{ user.name }}!</h2>
+        <h2 data-test="loggedin-name" class="extraspacing">Hi, {{ user.name }}!</h2>
+        <p data-test="loggedin-email">Email: {{user.email}}</p>
         <button v-on:click="logout" data-test="logout-button">
             Logout
         </button>
@@ -10,7 +11,7 @@
     <div v-else id="loginForm">
         <h2 class="extraspacing">Register or Login</h2>
 
-        <button v-on:click="registration = true; userfields = true; loginselect = false" data-test="registration-button">
+        <button v-on:click="registration = true; userfields = true; loginselect = false" data-test="registerselect-button">
             Register
         </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -19,7 +20,7 @@
         </button>
 
         <!-- Start registration form -->
-        <span v-show="registration">
+        <span v-show="registration" id="showregisterit">
             <h1 class="extraspacing">Register Your Account</h1>
             <p>To be able to contribute to the blog, register for an account, which will give you access to create new entries.</p>
 
@@ -56,16 +57,18 @@
             </div>
         </span>
 
-        <button v-on:click="register" data-test="register-button" v-show="registration">Register</button>
-        <button v-on:click="login" data-test="login-button" v-show="loginselect">Login</button>
+        <span v-show="registration"><button v-on:click="register" data-test="register-button">Register</button><br />
+                     <p class="error" v-if="errors">
+                Please correct the above errors.
+            </p>
+        </span>
 
-        <transition name="fade">
-            <div class="confirm" v-if="showConfirmation">Success!</div>
-        </transition>
+        <span v-show="loginselect"><button v-on:click="login" data-test="login-button">Login</button><br />
+         <p class="error" v-if="errors">
+               These credentials do not match our records.
+            </p>
+        </span>
 
-        <div class="error" v-if="errors">
-            Please correct the above errors.
-        </div>
     </div>
 </div>
 </template>
@@ -83,15 +86,8 @@ export default {
     },
     data() {
         return {
-            // Form is prefilled for demonstration purposes; remove in final application
-            // jill@harvard.edu/asdfasdf is one of our seed users from e28api/seeds/user.json
-            data: {
-                name: "Jill Harvard",
-                email: "jill@harvard.edu",
-                password: "asdfasdf",
-            },
+            data: {},
             errors: null,
-            showConfirmation: false,
             registration: false,
             loginselect: false,
             userfields: false,
@@ -104,11 +100,20 @@ export default {
     },
     methods: {
         validate() {
-            let validator = new Validator(this.data, {
-                name: "required|between:2,250|string",
-                email: "required|email",
-                password: "required|string|between:8,16",
-            });
+            let validator;
+            let registerStatus = document.getElementById("showregisterit");
+            if (registerStatus.style.display == "none") {
+                validator = new Validator(this.data, {
+                    email: "required|email",
+                    password: "required|string|between:8,16",
+                });
+            } else {
+                validator = new Validator(this.data, {
+                    name: "required|between:2,250|string",
+                    email: "required|email",
+                    password: "required|string|between:8,16",
+                });
+            }
 
             if (validator.fails()) {
                 this.errors = validator.errors.all();
@@ -119,29 +124,30 @@ export default {
             return validator.passes();
         },
         register() {
-             if(this.validate()) {
-            axios.post("/register", this.data).then((response) => {
-                if (response.data.errors) {
-                    this.errors = response.data.errors;
-                    this.showConfirmation = false;
-                } else {
+            if (this.validate()) {
+                axios.post("/register", this.data).then((response) => {
+                    if (response.data.errors) {
+                        this.errors = response.data.errors;
+                    } else {
                         axios.post("login", this.data).then((response) => {
-                if (response.data.authenticated) {
-                    this.$store.commit("setUser", response.data.user);}})
-                }
-            });
-             }
+                            if (response.data.authenticated) {
+                                this.$store.commit("setUser", response.data.user);
+                            }
+                        })
+                    }
+                });
+            }
         },
         login() {
-             if(this.validate()) {
-            axios.post("login", this.data).then((response) => {
-                if (response.data.authenticated) {
-                    this.$store.commit("setUser", response.data.user);
-                } else {
-                    this.errors = response.data.errors;
-                }
-            });
-             }
+            if (this.validate()) {
+                axios.post("login", this.data).then((response) => {
+                    if (response.data.authenticated) {
+                        this.$store.commit("setUser", response.data.user);
+                    } else {
+                        this.errors = response.data.errors;
+                    }
+                });
+            }
         },
         logout() {
             axios.post("logout").then((response) => {

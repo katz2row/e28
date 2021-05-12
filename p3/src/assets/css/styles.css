@@ -172,7 +172,7 @@ input {
 button {
     background-color: #1e7889;
     padding: 5px 20px;
-    margin: -20px auto 20px auto;
+    margin: 10px auto 20px auto;
     display: inline-block;
     border: 0.16em solid rgba(255, 255, 255, 0);
     border-radius: 2em;

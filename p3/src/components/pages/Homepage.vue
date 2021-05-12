@@ -3,9 +3,10 @@
     <hr />
     <display-abstract v-bind:article="article"></display-abstract>
     <p class="readmore">
-        <router-link v-bind:to="'/article/' + article.id" v-bind:key="article.id">Read More</router-link>
+        <router-link v-bind:to="'/article/' + article.id" v-bind:key="article.id" data-test="read-more">Read More</router-link>
     </p>
 </router-view>
+<span style="display:none" data-test="article-count">{{this.articles.length}}</span>
 </template>
 
 <script>

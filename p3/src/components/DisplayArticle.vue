@@ -2,10 +2,10 @@
 <div id="article-content">
     <article-html v-bind:article="article"></article-html>
 
-    <div class="previous" v-show="this.article.id > 1">
+    <div class="previous" v-show="this.article.id > 1" data-test="previous-article">
         <router-link v-bind:to="'/article/' + (article.id - 1)">Previous Article</router-link>
     </div>
-    <div class="next" v-show="this.article.id < this.articles.length">
+    <div class="next" v-show="this.article.id < this.articles.length" data-test="next-article">
         <router-link v-bind:to="'/article/' + (article.id + 1)">Next Article</router-link>
         </div>
     <div style="clear: both;">&nbsp;</div>
@@ -52,7 +52,7 @@ export default {
     float: left;
     background-color: #1e8965;
     padding: 5px 20px;
-    margin: -20px auto -10px auto;
+    margin: 10px auto 20px auto;
     display: inline-block;
     border: 0.16em solid rgba(255, 255, 255, 0);
     border-radius: 2em;
@@ -67,7 +67,7 @@ export default {
     float: right;
     background-color: #1e6d89;
     padding: 5px 20px;
-    margin: -20px auto -10px auto;
+    margin: 10px auto 20px auto;
     display: inline-block;
     border: 0.16em solid rgba(255, 255, 255, 0);
     border-radius: 2em;
